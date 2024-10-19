@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copa América</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/style.css">    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="icon" href="../static/img/copa-america.png" type="image/png">
+</head>
+<body>
+    
+    <header class="header">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{{ url_for('inicio_usuario') }}">Portal Deportivo</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler"
+                    aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarToggler">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#noticias">Noticias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#resultados">Resultados</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('estadisticas') }}">Estadisticas</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+                        <!-- Menú de Usuario -->
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" id="usuarioDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="{{ url_for('static', filename='img/copa-america.png') }}" alt="Foto de perfil"
+                                    class="profile-pic">
+                                {{ session['username'] }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="usuarioDropdown">
+                                <li><a class="dropdown-item" href="#">Perfil</a></li>
+                                <li><a class="dropdown-item" href="#">Cuenta</a></li>
+                                <li><a class="dropdown-item" href="#">Configuraciones</a></li>
+                                <li><a href="{{ url_for('logout') }}" class="btn btn-danger">Cerrar Sesión</a></li>
+                            </ul>
+                            <li class="nav-item dropdown redsoc">
+                                <a 
+                                    href="#" 
+                                    class="nav-link dropdown-toggle"
+                                    id="redesSocialesDropdown"
+                                    role="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                >
+                                Redes Sociales
+                                </a>
+                                <!-- Sub-elementos -->
+                                <ul class="dropdown-menu" aria-labelledby="redesSocialesDropdown">
+                                    <li><a href="https://www.instagram.com/copaamerica/" class="dropdown-item"><i class="bi bi-instagram"></i> Instagram</a></li>
+                                    <li><a href="https://www.facebook.com/CopaAmerica" class="dropdown-item"><i class="bi bi-facebook"></i> Facebook</a></li>
+                                    <li><a href="https://x.com/CopaAmerica" class="dropdown-item"><i class="bi bi-twitter"></i> X</a></li>
+                                </ul>
+                            </li>
+                        </li>
+                    </ul>
+
+
+
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('logout') }}" class="btn btn-danger">Cerrar Sesión</a>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="titulo">
+        <div class="sc-b8ac1e67-3 jWhswP">
+            <div class="pre-titulo">
+                <span>COPA AMÉRICA / ARGENTINA 1 - COLOMBIA 0</span>
+            </div>
+        </div>
+            <h1 class="sc-b8ac1e67-6 ">POLICIAS EN ACCIÓN.. ACA TRAJERON LA TELEVISION</h1>
+    </div>
+    
+
+    <main>
+
+        <div class="card img-pie2" style="width: 50%;">
+            <img src="../static/img/fotonoticia2" class="card-img-top" alt="policia maltratando">
+            <div class="card-body">
+                <p class="card-text">Miles de fanáticos fueron identificados por las autoridades de Florida y serán castigados con terribles sanciones.</p>
+            </div>
+        </div>
+        <div class="parrafo">
+            <p>
+                El caos trajo severas consecuencias. Los escandalosos incidentes en la previa de la final la <strong>Copa América</strong>, que obligaron a la Conmebol a retrasar más de una hora y media el inicio del partido entre Argentina y Colombia, han provocado que las autoridades de Florida investiguen en profundidad cada uno de los acontecimientos, con una tecnología avanzada que le permitió reconocer a miles de aficionados, que serán severamente castigados, al punto de ser deportados o sancionados con cargos de índole criminal.
+            </p>
+            <p>
+                Gracias al sistema de cámaras biométricas que se encuentra tanto en el interior como en el exterior del Hard Rock Stadium y una avanzada tecnología de rastreo, se pudieron distinguir un total de 7.000 fanáticos que habrían aprovechado los desbordes para infiltrarse en el último partido de la cita continental.
+
+Dichos infractores afrontarían secuelas de todo tipo, como cargos criminales, algunos días en prisión, aplastantes multas o, también, la revocación de su visa. De hecho, muchos de ellos -en su mayoría colombianos- podrían ser deportados y enfrentar la pérdida permanente de su estatus migratorio. Durísimo.
+
+            </p>
+            <div class="img2">
+                <img src="../static/img/7ughZ3GDy_1290x760__1.jpg" alt="otra vez maltratando" width="900px" height="500px">
+            </div>
+
+            <div class="parrafo">
+                <p>
+                    Aunque no irán solo por ellos. También, se ha determinado que las medidas incluyan a los familiares o acompañantes de los involucrados en el desastre. ¿Cuál es el objetivo de esto? Emplear una política de tolerancia cero sobre los incidentes.
+                </p>
+                <p>
+                    “Como ya hemos dicho, el Hard Rock Stadium trabajó en colaboración con la CONMEBOL, la CONCACAF y las fuerzas del orden locales en la seguridad tanto antes como durante la <strong>Copa América</strong>. Los organismos se reunieron con regularidad, e incluso celebraron reuniones informativas diarias sobre seguridad durante todo el torneo, que duró un mes. El Hard Rock Stadium aplicó, y en muchos casos superó, las recomendaciones de seguridad de la CONMEBOL durante todo el torneo y la final”, aclararon.
+                </p>
+            </div>
+        </div>
+    
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Shark2.0 . Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var bienvenidoModal = new bootstrap.Modal(document.getElementById('bienvenidoModal'));
+            bienvenidoModal.show();
+        });
+    </script>
+
+</body>
+</html>

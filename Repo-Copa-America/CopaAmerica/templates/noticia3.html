@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copa América</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/style.css">    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="icon" href="../static/img/copa-america.png" type="image/png">
+</head>
+<body>
+    
+    <header class="header">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{{ url_for('inicio_usuario') }}">Portal Deportivo</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler"
+                    aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarToggler">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#noticias">Noticias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#resultados">Resultados</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('estadisticas') }}">Estadisticas</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+                        <!-- Menú de Usuario -->
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" id="usuarioDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="{{ url_for('static', filename='img/copa-america.png') }}" alt="Foto de perfil"
+                                    class="profile-pic">
+                                {{ session['username'] }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="usuarioDropdown">
+                                <li><a class="dropdown-item" href="#">Perfil</a></li>
+                                <li><a class="dropdown-item" href="#">Cuenta</a></li>
+                                <li><a class="dropdown-item" href="#">Configuraciones</a></li>
+                                <li><a href="{{ url_for('logout') }}" class="btn btn-danger">Cerrar Sesión</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown redsoc">
+                            <a 
+                                href="#" 
+                                class="nav-link dropdown-toggle"
+                                id="redesSocialesDropdown"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            >
+                            Redes Sociales
+                            </a>
+                            <!-- Sub-elementos -->
+                            <ul class="dropdown-menu" aria-labelledby="redesSocialesDropdown">
+                                <li><a href="https://www.instagram.com/copaamerica/" class="dropdown-item"><i class="bi bi-instagram"></i> Instagram</a></li>
+                                <li><a href="https://www.facebook.com/CopaAmerica" class="dropdown-item"><i class="bi bi-facebook"></i> Facebook</a></li>
+                                <li><a href="https://x.com/CopaAmerica" class="dropdown-item"><i class="bi bi-twitter"></i> X</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+
+
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('logout') }}" class="btn btn-danger">Cerrar Sesión</a>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="titulo">
+        <div class="sc-b8ac1e67-3 jWhswP">
+            <div class="pre-titulo">
+                <span>COPA AMÉRICA / ARGENTINA 1 - COLOMBIA 0</span>
+            </div>
+        </div>
+            <h1 class="sc-b8ac1e67-6 ">COLOMBIA ESTA EN MODO FRANCIA...</h1>
+    </div>
+    
+
+    <main>
+
+        <div class="card img-pie2" style="width: 50%;">
+            <img src="../static/img/MEME JAMES.jpg" class="card-img-top" alt="policia maltratando">
+            <div class="card-body">
+                <p class="card-text">Como de costumbre, despues de la final de la copa se hicieron ver los primeros memes.</p>
+            </div>
+        </div>
+            <div img4 >
+
+            </div>
+
+            <div class="img3">
+                <img src="../static/img/los-mejores-memes-de-argentina-vs-X4PNSZJKPZGSNMSARXOCAV422U.avif" alt=".." width="700px" height="400px">
+            </div>
+            <div class="img4">
+                <img src="../static/img/meme3" alt=".." width="700px" height="400px">
+            </div>
+            
+
+        </div>
+    
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Shark2.0 . Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var bienvenidoModal = new bootstrap.Modal(document.getElementById('bienvenidoModal'));
+            bienvenidoModal.show();
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="icon" href="../static/img/copa-america.png" type="image/png">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .login-container img {
+            width: 100%;
+            max-width: 150px;
+            margin-bottom: 1rem;
+        }
+        .login-container h2 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: #333333;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #666666;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+        }
+        .form-group input:focus {
+            border-color: #d32f2f; /* Color rojo */
+            outline: none;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #d32f2f; /* Color rojo */
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            width: 100%;
+        }
+        .btn:hover {
+            background-color: #b71c1c; /* Color rojo oscuro */
+        }
+        .login-container .links {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        .login-container .links a {
+            color: #d32f2f; /* Color rojo */
+            text-decoration: none;
+        }
+        .login-container .links a:hover {
+            text-decoration: underline;
+        }
+        .alert-container {
+            margin-bottom: 1rem;
+        }
+        .alert {
+            padding: 0.75rem;
+            border-radius: 4px;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            opacity: 1;
+            transition: opacity 0.5s ease-out;
+        }
+        .alert.success {
+            background-color: #4caf50; /* Verde */
+        }
+        .alert.danger {
+            background-color: #f44336; /* Rojo */
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='img/copa-america.png') }}" alt="logo de copa america" class="logo">
+        </div>
+        <h2>Inicio de Sesión</h2>
+        
+        <!-- Mostrar mensajes de alerta -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="alert-container">
+                    {% for category, message in messages %}
+                        <div class="alert {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        <form action="{{ url_for('login') }}" method="POST">
+            <div class="form-group">
+                <label for="email">Correo Electrónico</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="contraseña">Contraseña</label>
+                <input type="password" id="contraseña" name="contraseña" required>
+            </div>
+            <button type="submit" class="btn">Iniciar Sesión</button>
+        </form>
+        <div class="links">
+            <p>¿No tienes una cuenta? <a href="{{ url_for('register') }}">Regístrate aquí</a></p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script>
+        // Función para ocultar las alertas después de unos segundos
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                var alerts = document.querySelectorAll('.alert');
+                alerts.forEach(function(alert) {
+                    alert.style.opacity = '0';
+                });
+            }, 3000); // Tiempo en milisegundos (3 segundos)
+        });
+    </script>
+</body>
+</html>

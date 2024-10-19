@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Deportivo - Copa América</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="icon" href="../static/img/copa-america.png" type="image/png">
+
+</head>
+<style>
+    /* Estilo general para la sección de jugadores */
+    #jugadores {
+        padding: 50px 0;
+        background-color: #f9f9f9;
+    }
+    
+    #jugadores h2 {
+        font-family: 'Arial', sans-serif;
+        font-weight: bold;
+        font-size: 2.5rem;
+        color: #333;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    /* Estilo de las tarjetas */
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        overflow: hidden;
+        transition: transform 0.3s;
+    }
+    
+    .card:hover {
+        transform: scale(1.05);
+    }
+    
+    .card-img-top {
+        border-bottom: 1px solid #ddd;
+        object-fit: cover;
+        height: 200px;
+    }
+    
+    .card-body {
+        padding: 20px;
+    }
+    
+    .card-title {
+        font-family: 'Arial', sans-serif;
+        font-weight: bold;
+        font-size: 1.25rem;
+        color: #555;
+    }
+    
+    .card-text {
+        font-family: 'Arial', sans-serif;
+        font-size: 1rem;
+        color: #666;
+        margin-bottom: 0.5rem;
+    }
+    /* Estilo general para la sección de equipos */
+    #equipos {
+        padding: 50px 0;
+        background-color: #f9f9f9;
+    }
+    
+    #equipos h2 {
+        font-family: 'Arial', sans-serif;
+        font-weight: bold;
+        font-size: 2.5rem;
+        color: #333;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    /* Estilo de las tarjetas */
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-img-top {
+    object-fit: cover;
+    height: 200px;
+    border-radius: 10px 10px 0 0;
+    }
+
+    
+    .card-body {
+        padding: 20px;
+        background-color: #e9e9e9;
+    }
+
+    
+    .card-title {
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.3rem;
+        letter-spacing: 0.5px;
+        color: #333;
+        text-transform: uppercase; 
+    }
+    .card-title {
+        background: linear-gradient(45deg, #ff6b6b, #f94d6a);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+}
+
+
+.card-text {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300; 
+        font-size: 0.95rem; 
+        color: #888; 
+        margin-bottom: 0.75rem;
+        line-height: 1.6; 
+        text-transform: uppercase; 
+}
+
+    
+</style>
+
+<body>
+    <header class="header">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{{ url_for('inicio_usuario') }}">Portal Deportivo</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler"
+                    aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarToggler">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#noticias">Noticias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#resultados">Resultados</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#jugadores">Jugadores</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#equipos">Equipos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('estadisticas') }}">Estadisticas</a>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+                        <!-- Menú de Usuario -->
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" id="usuarioDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="{{ url_for('static', filename='img/copa-america.png') }}" alt="Foto de perfil"
+                                    class="profile-pic">
+                                {{ session['username'] }}
+                            </a>
+                            <li class="nav-item dropdown redsoc">
+                                <a 
+                                    href="#" 
+                                    class="nav-link dropdown-toggle"
+                                    id="redesSocialesDropdown"
+                                    role="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                >
+                                Redes Sociales
+                                </a>
+                                <!-- Sub-elementos -->
+                                <ul class="dropdown-menu" aria-labelledby="redesSocialesDropdown">
+                                    <li><a href="https://www.instagram.com/copaamerica/" class="dropdown-item"><i class="bi bi-instagram"></i> Instagram</a></li>
+                                    <li><a href="https://www.facebook.com/CopaAmerica" class="dropdown-item"><i class="bi bi-facebook"></i> Facebook</a></li>
+                                    <li><a href="https://x.com/CopaAmerica" class="dropdown-item"><i class="bi bi-twitter"></i> X</a></li>
+                                </ul>
+                            </li>
+                            <ul class="dropdown-menu" aria-labelledby="usuarioDropdown">
+                                <li><a href="{{ url_for('logout') }}" class="btn btn-danger">Cerrar Sesión</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                        {% if current_user.is_authenticated %}
+                            <li class="nav-item">
+                                <a href="{{ url_for('logout') }}" class="btn btn-danger">Cerrar Sesión</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a href="{{ url_for('login') }}" class="btn btn-primary">Iniciar Sesión</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ ('register') }}" class="btn btn-secondary">Únete</a>
+                            </li>
+                        {% endif %}
+                        
+                    </ul>
+
+        </nav>
+    </header>
+
+    <div class="logo-container">
+        <img src="../static/img/copa-america.png" alt="logo de dengue" class="logo">
+    </div>
+
+    <main>
+        <!-- Sección Jugadores -->
+        <section id="jugadores" class="section">
+            <div class="container">
+                <h2>ESTADISTICAS 2024</h2>
+                <h2>Jugadores</h2>
+                <div class="row">
+                    <!-- Contenedor para cada jugador -->
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card">
+                            <img src="../static/img/jugador1.jpg" class="card-img-top" alt="Jugador 1">
+                            <div class="card-body">
+                                <h5 class="card-title">1. James Rodríguez </h5>
+                                <p class="card-text">Nacionalidad: Colombia</p>
+                                <p class="card-text">Goles: 1</p>
+                                <p class="card-text">Asistencias: 6</p>
+                                <p class="card-text">Posición:Centrocampista </p>
+                                <p class="card-text">puntaje: 8.03 </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Repetir para los 9 jugadores restantes -->
+                    <!-- Ejemplo para otro jugador -->
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card">
+                            <img src="../static/img/jugador2.jpg" class="card-img-top" alt="Jugador 2">
+                            <div class="card-body">
+                                <h5 class="card-title">2. Rafael Romo</h5>
+                                <p class="card-text">Nacionalidad: Venezuela</p>
+                                <p class="card-text">Goles: 0</p>
+                                <p class="card-text">Asistencias: 0</p>
+                                <p class="card-text">Posición: Portero </p>                                
+                                <p class="card-text">puntaje:7.88 </p>
+
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Añadir 8 jugadores más aquí... -->
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card">
+                            <img src="../static/img/jugador3.jpg" class="card-img-top" alt="Jugador 3">
+                            <div class="card-body">
+                                <h5 class="card-title">3. Salomón Rondón</h5>
+                                <p class="card-text">Nacionalidad: Venezuela</p>
+                                <p class="card-text">Goles: 3</p>
+                                <p class="card-text">Asistencias: 0</p>
+                                <p class="card-text">Posición: Delantero </p>
+                                <p class="card-text">puntaje: 7.65 </p>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card">
+                            <img src="../static/img/jugador4.jpg" class="card-img-top" alt="Jugador 4">
+                            <div class="card-body">
+                                <h5 class="card-title">4. Federico Valverde</h5>
+                                <p class="card-text">Goles: 0</p>
+                                <p class="card-text">Asistencias: 0</p>
+                                <p class="card-text">Posición:Mediocampista </p>
+                                <p class="card-text">puntaje general: 7.65 </p>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card">
+                            <img src="../static/img/jugador5.jpg" class="card-img-top" alt="Jugador 5">
+                            <div class="card-body">
+                                <h5 class="card-title">5. Cristian Romero</h5>
+                                <p class="card-text">Nacionalidad: Argentina </p>
+                                <p class="card-text">Goles: 0</p>
+                                <p class="card-text">Asistencias: 0</p>
+                                <p class="card-text">Posición: Defensor </p>
+                                <p class="card-text">puntaje general: 7.65 </p>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card">
+                            <img src="../static/img/jugador6.jpg" class="card-img-top" alt="Jugador 6">
+                            <div class="card-body">
+                                <h5 class="card-title">6. Lionel Messi</h5>
+                                <p class="card-text">Nacionalidad: Argentina </p>
+                                <p class="card-text">Goles: 1</p>
+                                <p class="card-text">Asistencias: 1</p>
+                                <p class="card-text">Posición: Delantero </p>
+                                <p class="card-text">puntaje general: 7.54 </p>                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card">
+                            <img src="../static/img/jugador7.jpg" class="card-img-top" alt="Jugador 7">
+                            <div class="card-body">
+                                <h5 class="card-title">7. Moisés Caicedo</h5>
+                                <p class="card-text">Nacionalidad: Ecuador </p>
+                                <p class="card-text">Goles: 0</p>
+                                <p class="card-text">Asistencias: 0</p>
+                                <p class="card-text">Posición: Defensor </p>
+                                <p class="card-text">puntaje general: 7.45 </p>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card">
+                            <img src="../static/img/jugador8.jpg" class="card-img-top" alt="Jugador 8">
+                            <div class="card-body">
+                                <h5 class="card-title">8. Emiliano Martínez </h5>
+                                <p class="card-text">Nacionalidad: Argentina </p>
+                                <p class="card-text">Goles: 0</p>
+                                <p class="card-text">Asistencias: 0</p>
+                                <p class="card-text">Posición: Portero </p>
+                                <p class="card-text">puntaje general: 7.43 </p>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card">
+                            <img src="../static/img/jugador9.jpg" class="card-img-top" alt="Jugador 9">
+                            <div class="card-body">
+                                <h5 class="card-title">9. Maxime Crépeau </h5>
+                                <p class="card-text">Nacionalidad: Canadá </p>
+                                <p class="card-text">Goles: 0</p>
+                                <p class="card-text">Asistencias: 0</p>
+                                <p class="card-text">Posición: Arquero </p>
+                                <p class="card-text">puntaje general: 7.42 </p>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card">
+                            <img src="../static/img/jugador10.jpg" class="card-img-top" alt="Jugador 10">
+                            <div class="card-body">
+                                <h5 class="card-title">10. Mathías Olivera</h5>
+                                <p class="card-text">Nacionalidad: Uruguay</p>
+                                <p class="card-text">Goles: 0</p>
+                                <p class="card-text">Asistencias: 0</p>
+                                <p class="card-text">Posición: Defensa </p>
+                                <p class="card-text">puntaje general: 7.36 </p>
+
+                                
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Equipos -->
+        <section id="equipos" class="section">
+            <div class="container">
+                <h2>Equipos</h2>
+                <div class="row">
+                    <!-- Contenedor para cada equipo -->
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card">
+                            <img src="../static/img/colombia.png" class="card-img-top" alt="Equipo 1">
+                            <div class="card-body">
+                                <h5 class="card-title">1. Colombia</h5>
+                                <p class="card-text">Goles a favor: 12</p>
+                                <p class="card-text">Golesen contra: 3</p>
+                                <p class="card-text">Disparos a puerta: 78</p>
+                                <p class="card-text">Faltas cometidas: 94</p>
+                                <p class="card-text">Tarjetas amarillas: 11</p>
+                                <p class="card-text">tarjetas rojas: 1</p>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Repetir para los 4 equipos restantes -->
+                    <!-- Ejemplo para otro equipo -->
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card">
+                            <img src="../static/img/uruguay.jpg" class="card-img-top" alt="Equipo 2">
+                            <div class="card-body">
+                                <h5 class="card-title">2. Uruguay</h5>
+                                <p class="card-text">Goles a favor: 11</p>
+                                <p class="card-text">Golesen contra: 4</p>
+                                <p class="card-text">Disparos a puerta: 85</p>
+                                <p class="card-text">Faltas cometidas: 90</p>
+                                <p class="card-text">Tarjetas amarillas: 8</p>
+                                <p class="card-text">tarjetas rojas: 2</p>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Añadir 3 equipos más aquí... -->
+
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card">
+                            <img src="../static/img/argentina.jpg" class="card-img-top" alt="Equipo 3">
+                            <div class="card-body">
+                                <h5 class="card-title">3. Argentina</h5>
+                                <p class="card-text">Goles a favor: 9</p>
+                                <p class="card-text">Golesen contra: 1</p>
+                                <p class="card-text">Disparos a puerta: 83</p>
+                                <p class="card-text">Faltas cometidas: 61</p>
+                                <p class="card-text">Tarjetas amarillas: 8</p>
+                                <p class="card-text">tarjetas rojas: 0</p>                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card">
+                            <img src="../static/img/venezuela.png" class="card-img-top" alt="Equipo 4">
+                            <div class="card-body">
+                                <h5 class="card-title">4. Venezuela</h5>
+                                <p class="card-text">Goles a favor: 7</p>
+                                <p class="card-text">Golesen contra: 2</p>
+                                <p class="card-text">Disparos a puerta: 56</p>
+                                <p class="card-text">Faltas cometidas: 40</p>
+                                <p class="card-text">Tarjetas amarillas: 6</p>
+                                <p class="card-text">tarjetas rojas: 0</p>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card">
+                            <img src="../static/img/panama.png" class="card-img-top" alt="Equipo 5">
+                            <div class="card-body">
+                                <h5 class="card-title">5. Paramá</h5>
+                                <p class="card-text">Goles a favor: 6</p>
+                                <p class="card-text">Golesen contra: 10</p>
+                                <p class="card-text">Disparos a puerta: 50</p>
+                                <p class="card-text">Faltas cometidas: 56</p>
+                                <p class="card-text">Tarjetas amarillas: 8</p>
+                                <p class="card-text">tarjetas rojas: 1</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+    <div class="logo-container">
+        <img src="../static/img/copa-america.png" alt="logo de dengue" class="logo">
+    </div>
+
+    
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Shark2.0 . Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
