@@ -42,22 +42,32 @@ _Descripción de la página principal, donde los usuarios pueden explorar las se
 ### **Sección de Noticias**
 _Espacio dinámico con noticias destacadas del torneo._
 
-![Vista previa de la sección de noticias](ruta/a/la/captura2.png)
+![Vista previa de la sección de noticias](Repo-Copa-America/CopaAmerica/static/img/noticias1.png)
+![Vista previa de la sección de noticias](Repo-Copa-America/CopaAmerica/static/img/noticias2.png)
+
+### **Sección de resultados t tabla de posiciones general**
+_Los usuarios tiene acceso a los resultados de todos los partidos y tabla de posisiónes de los 4 grupos._
+
+![Vista previa de la página de usuario](Repo-Copa-America/CopaAmerica/static/img/resultados.png)
+![Vista previa de la página de usuario](Repo-Copa-America/CopaAmerica/static/img/tablaposisiones.png)
+
 
 ### **Página de Usuario**
 _Página personalizada que permite a los usuarios registrados acceder a las funcionalidades de votación._
 
-![Vista previa de la página de usuario](ruta/a/la/captura3.png)
+![Vista previa de la página de usuario](Repo-Copa-America/CopaAmerica/static/img/votacionjugador.png)
 
-### **Votación de Jugador**
-_Interfaz para seleccionar y votar por el mejor jugador de la Copa América._
+### **Votación de Jugador y Equipo**
+_Interfaz para seleccionar y votar por el mejor jugador y equipo de la Copa América._
 
-![Vista previa de votación de jugador](ruta/a/la/captura4.png)
+![Vista previa de votación de jugador](Repo-Copa-America/CopaAmerica/static/img/votacionequipo.png)
 
 ### **Estadísticas**
 _Visualización gráfica de los votos para jugadores y equipos._
 
-![Vista previa de las estadísticas](ruta/a/la/captura5.png)
+![Vista previa de las estadísticas](Repo-Copa-America/CopaAmerica/static/img/estadisticajugador.png)
+![Vista previa de las estadísticas](Repo-Copa-America/CopaAmerica/static/img/estadisticaequipo.png)
+
 
 ---
 
